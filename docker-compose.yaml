@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  outcome_frontend:
+    container_name: outcome_frontend
+    image: mustaphaa/outcome:latest
+    build: ./outcome
+    ports: 
+    - target: 5000
+      published: 5000
+      protocol: tcp
+    environment:
+      DATABASE_URI: ${DATABASE_URI}
+  player_backend:
+    container_name: player_backend
+    image: mustaphaa/player:latest
+    build: ./player
+  team_backend:
+    container_name: team_backend
+    image: mustaphaa/team:latest
+    build: ./team
+  result_backend:
+    container_name: result_backend
+    image: mustaphaa/result:latest
+    build: ./result
+  
