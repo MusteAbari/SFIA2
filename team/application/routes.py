@@ -13,6 +13,11 @@ def get_team():
 
 
 """
+@app.route("/team", methods=["GET"])
+def get_team():
+    teams = ["Arsenal", "Chelsea", "Fulham", "Liverpool"]
+    return Response(str(random.choice(teams)), mimetype='text/plain')
+
 @app.route("/teamposition", methods=["GET"])
 def get_teamposition():
     team = request.data2.decode("utf-8")

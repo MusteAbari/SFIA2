@@ -3,21 +3,23 @@ pipeline{
     environment {
         app_version = 'v1'
         rollback = 'true'
+        DATABASE_URI = credentials("DATABASE_URI")
+        DATABASE_URI2 = credentials("DATABASE_URI2")
     }
     stages{
         stage("Testing"){
             steps{
-
+                sh "bash jenkins/test.sh"
             }
         }
         stage("Build & Push"){
             steps{
-
+                sh "docker-compose build && docker-compose push"
             }
         }
         stage("Config Management"){
             steps{
-
+                sh "cd ansible && /home/jenkins/.local/bin/ansible-playbook -i inventory playbook.yaml"
             }
         }
         stage("Deploy"){

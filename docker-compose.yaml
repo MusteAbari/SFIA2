@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   outcome_frontend:
-    container_name: outcome_frontend
+    container_name: football_outcome_frontend
     image: mustaphaa/outcome:latest
     build: ./outcome
     ports: 
@@ -11,15 +11,15 @@ services:
     environment:
       DATABASE_URI: ${DATABASE_URI}
   player_backend:
-    container_name: player_backend
+    container_name: football_player_backend
     image: mustaphaa/player:latest
     build: ./player
   team_backend:
-    container_name: team_backend
+    container_name: football_team_backend
     image: mustaphaa/team:latest
     build: ./team
   result_backend:
-    container_name: result_backend
+    container_name: football_result_backend
     image: mustaphaa/result:latest
     build: ./result
   

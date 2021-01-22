@@ -1,0 +1,16 @@
+[managers]
+swarm-master
+
+[workers]
+swarm-worker1
+swarm-worker2
+
+[managers:vars]
+ansible_user=jenkins
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_ssh_private_key_file=~.ssh/ansible
+
+[workers:vars]
+ansible_user=jenkins
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_ssh_private_key_file=~.ssh/ansible
