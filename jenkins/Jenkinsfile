@@ -4,7 +4,6 @@ pipeline{
         app_version = 'v1'
         rollback = 'true'
         DATABASE_URI = credentials("DATABASE_URI")
-        DATABASE_URI2 = credentials("DATABASE_URI2")
     }
     stages{
         stage("Testing"){
@@ -24,7 +23,7 @@ pipeline{
         }
         stage("Deploy"){
             steps{
-                
+                sh "bash jenkins/deploy.sh"
             }
         }
     }
