@@ -9,8 +9,15 @@ class TestBase(TestCase):
         return app
 
 class TestResponse(TestBase):
-    def result(self):
-        with patch("random.choice") as random:
-            random.return_value = "Arsenal"
-            response = self.client.get(url_for('get_team'))
-            self.assertEqual(b'Arsenal', response.data)
+    def test_result(self):
+        players = ["Rooney", "Beckham", "Cole"]
+        teams = ["Arsenal", "Chelsea", "Fulham"]
+        result = [b"Rooney will score", b"Rooney will score", b"Rooney will score", 
+                    b"Beckham will score", b"Beckham will not score", b"Beckham will score", 
+                    b"Cole will not score", b"Cole will not score", b"Cole will score"]
+        i = 0
+        for player in players:
+            for team in teams:
+                response=self.client.post(url_for("result"), json={"player" : player, "team" : team})
+                self.assertEqual(response.data, result[i])
+                i+=1

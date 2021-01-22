@@ -1,4 +1,9 @@
 ---
+- name: setup nginx
+  become: true
+  hosts: nginx
+  roles:
+    - nginx
 - name: Start Docker Swarm
   become: true
   hosts: managers

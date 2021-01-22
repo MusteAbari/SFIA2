@@ -19,3 +19,4 @@ def result():
         else:
             message="Cole will not score"       
     return Response(message, mimetype='text/plain')
+    

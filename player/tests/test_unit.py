@@ -8,8 +8,6 @@ class TestBase(TestCase):
     def create_app(self):
         return app
 
-
-
 class TestResponse(TestBase):
     def test_get_player(self):
         with patch("random.choice") as random:

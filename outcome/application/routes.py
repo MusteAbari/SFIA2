@@ -1,5 +1,5 @@
 from application import app, db
-from application.models import Players, Teams
+from application.models import Players
 import requests
 from requests import get
 from flask import render_template
@@ -12,16 +12,13 @@ def index():
         "http://football_result_backend:5000/result", 
         json=dict(player=player_response.text, team=team_response.text))
     
-    new_player = Players(name = player_response.text)
-    new_team = Teams(name = team_response.text)
+    new_player = Players(name = player_response.text, team = team_response.text, result = result_response.text)
     db.session.add(new_player)
-    db.session.add(new_team)
     db.session.commit()
 
     view_players = Players.query.all()
-    view_teams = Teams.query.all()
 
     return render_template(
         "index.html", 
         player=player_response.text, team=team_response.text, goal=result_response.text, 
-        view_players=view_players, view_teams=view_teams)
+        view_players=view_players)
